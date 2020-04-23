@@ -15,7 +15,7 @@ import styles from './styles';
 // import DropdownMenu from 'react-native-dropdown-menu';
 import images from '../../assets/';
 import SearchData from '../../component/customTextBox';
-
+import {Switch} from 'react-native-switch';
 interface IProps {
   appTheme: Object;
 }
@@ -82,7 +82,7 @@ class HomeScreen extends React.Component<IProps, IState> {
   state: {};
   constructor(props: any) {
     super(props);
-    this.state = {data: [], isLoading: true};
+    this.state = {data: [], isLoading: true, selectedVal: true};
   }
 
   componentDidMount() {}
@@ -101,6 +101,17 @@ class HomeScreen extends React.Component<IProps, IState> {
           <Text style={styles.categoryTextTimeColor}>{date}</Text>
           <Text style={styles.timeText}>{time}</Text>
         </View>
+      </View>
+    );
+  };
+
+  customThemeIcon = () => {
+    const {selectedVal} = this.state;
+    return (
+      <View>
+        <Text style={{color: '#76ccf3', fontSize: 16, fontWeigth: 'bold'}}>
+          {selectedVal ? `Follow-Ups` : 'Lead List'}
+        </Text>
       </View>
     );
   };
@@ -129,20 +140,51 @@ class HomeScreen extends React.Component<IProps, IState> {
                 />
               </View>
             </View>
-            <View style={styles.typeText}>
-              <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-                <Image style={styles.doneIcon} source={images.done} />
-                <Text style={{marginHorizontal: 5, marginVertical: 2}}>
-                  Prospects
-                </Text>
-              </View>
 
-              <Image style={styles.doneIcon} source={images.done} />
-              <Text>Client</Text>
-              <Image style={styles.doneIcon} source={images.done} />
+            <View style={{marginHorizontal: 15, marginBottom: 20}}>
+              <Switch
+                value={this.state.selectedVal}
+                onValueChange={(value) => this.setState({selectedVal: value})}
+                disabled={false}
+                circleSize={190}
+                barHeight={55}
+                circleBorderWidth={0}
+                backgroundActive="#76ccf3"
+                backgroundInactive="#76ccf3"
+                circleActiveColor="#FFF"
+                // circleInActiveColor="#FFF"
+                changeValueImmediately={true}
+                renderInsideCircle={() => this.customThemeIcon()}
+                innerCircleStyle={{
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  height: 40,
+                  width: 180,
+                }}
+                outerCircleStyle={{}} // style for outer animated circle
+                // activeText={'Lead List'}
 
-              <Text>Leads</Text>
+                // inActiveText={'Follow-Ups'}
+                // renderActiveText={true}
+                // renderInActiveText={true}
+              />
             </View>
+
+            <View style={styles.typeText}>
+              <View style={styles.doneContainer}>
+                <Image style={styles.doneIcon} source={images.done} />
+                <Text style={styles.dontText}>Prospects</Text>
+              </View>
+              <View style={styles.doneContainer}>
+                <Image style={styles.doneIcon} source={images.done} />
+                <Text style={styles.dontText}>Client</Text>
+              </View>
+              <View style={styles.doneContainer}>
+                <Image style={styles.doneIcon} source={images.done} />
+                <Text style={styles.dontText}>Leads</Text>
+              </View>
+            </View>
+
             <View style={styles.typeText2}>
               <Text>Name</Text>
               <Text>Company</Text>

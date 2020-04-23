@@ -29,9 +29,9 @@ export default StyleSheet.create({
   },
   input: {
     flex: 1,
-    paddingTop: scale(15),
-    paddingRight: scale(15),
-    paddingBottom: scale(15),
+    // paddingTop: scale(15),
+    // paddingRight: scale(15),
+    // paddingBottom: scale(15),
     paddingLeft: 0,
     // backgroundColor: 'red',
     color: '#424242',

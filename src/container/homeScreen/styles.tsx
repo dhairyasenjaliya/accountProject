@@ -131,7 +131,10 @@ const styles = StyleSheet.create({
   doneIcon: {
     height: scale(20),
     width: scale(20),
+    marginHorizontal: scale(10),
   },
+  doneContainer: {flexDirection: 'row', justifyContent: 'center'},
+  doneText: {marginHorizontal: scale(5), marginVertical: scale(2)},
 });
 
 export default styles;
