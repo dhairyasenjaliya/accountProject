@@ -1,6 +1,12 @@
-import React from 'react';
-import {Text, View, Image, TouchableOpacity, TextInput} from 'react-native';
-import images from '../../assets/';
+import React from './node_modules/react';
+import {
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  TextInput,
+} from './node_modules/react-native';
+import images from '../../assets';
 
 import styles from './styles';
 

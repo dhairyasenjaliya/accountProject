@@ -6,6 +6,7 @@ import HomeScreen from './src/container/homeScreen';
 import DetailScreen from './src/container/detailScreen';
 
 const Stack = createStackNavigator();
+console.disableYellowBox = true;
 
 class App extends React.Component {
   constructor(props) {

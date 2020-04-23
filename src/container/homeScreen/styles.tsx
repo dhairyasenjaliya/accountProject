@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     marginHorizontal: scale(10),
     justifyContent: 'center',
+    marginVertical: scale(10),
   },
   searchFlex: {
     flexDirection: 'row',
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     marginRight: scale(5),
     textAlign: 'center',
-    backgroundColor: '#76c67b',
+    backgroundColor: '#35e7bd',
     color: '#FFF',
   },
   categoryTextAll: {
@@ -101,7 +102,7 @@ const styles = StyleSheet.create({
   header: {
     resizeMode: 'contain',
     width: '100%',
-    marginTop: scale(Platform.OS === 'ios' ? -30 : -40),
+    // marginTop: scale(Platform.OS === 'ios' ? -30 : -40),
   },
   dataTimeContain: {
     padding: scale(20),
@@ -115,7 +116,7 @@ const styles = StyleSheet.create({
   },
   searchContain: {
     backgroundColor: '#FFF',
-    paddingVertical: scale(20),
+    // paddingVertical: scale(20),
   },
   typeText: {
     flexDirection: 'row',

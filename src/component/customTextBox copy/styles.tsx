@@ -1,4 +1,4 @@
-import {StyleSheet, Platform} from 'react-native';
+import {StyleSheet, Platform} from './node_modules/react-native';
 import {scale} from '../../utils/scale';
 
 export default StyleSheet.create({

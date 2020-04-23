@@ -17,7 +17,7 @@ export default StyleSheet.create({
     backgroundColor: '#f4f5f5',
     marginHorizontal: scale(20),
     borderRadius: scale(100),
-    paddingVertical: scale(Platform.OS === 'ios' ? 15 : 0),
+    // paddingVertical: scale(Platform.OS === 'ios' ? 0 : 0),
     marginVertical: scale(10),
   },
   searchIcon: {
@@ -41,9 +41,10 @@ export default StyleSheet.create({
   },
   input: {
     flex: 1,
-    // paddingTop: scale(15),
-    // paddingRight: scale(15),
-    // paddingBottom: scale(15),
+    paddingTop: scale(15),
+    paddingRight: scale(15),
+    paddingBottom: scale(15),
+    // paddingVertical: scale(Platform.OS === 'ios' ? 15 : 0),
     paddingLeft: 0,
     // backgroundColor: 'red',
     color: '#424242',

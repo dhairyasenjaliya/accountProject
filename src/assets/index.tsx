@@ -16,4 +16,9 @@ export default {
   header: require(`${HomeScreen}header.png`),
   header1: require(`${HomeScreen}header1.png`),
   done: require(`${HomeScreen}done.png`),
+  drop: require(`${HomeScreen}drop.png`),
+  searchCom: require(`${HomeScreen}searchCom.png`),
+  suggestion: require(`${HomeScreen}suggestion.png`),
+  down: require(`${HomeScreen}down.png`),
+  background: require(`${HomeScreen}background.png`),
 };

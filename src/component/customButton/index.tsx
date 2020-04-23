@@ -1,10 +1,10 @@
 import React from 'react';
 import {Text, View, Image, TouchableOpacity, TextInput} from 'react-native';
-import images from '../../assets/';
+import images from '../../assets';
 
 import styles from './styles';
 
-const SearchData = (props: any) => {
+const CustomButton = (props: any) => {
   const {
     appTheme,
     data = '',
@@ -12,9 +12,12 @@ const SearchData = (props: any) => {
     icon,
     backGroundColor,
     border = '',
+    onPress = '',
+    color = '',
   } = props;
   return (
-    <View
+    <TouchableOpacity
+      onPress={onPress ? onPress : () => {}}
       style={[
         styles.searchSection,
         {backgroundColor: backGroundColor ? backGroundColor : '#f4f5f5'},
@@ -22,21 +25,16 @@ const SearchData = (props: any) => {
       ]}>
       {/* <Icon style={styles.searchIcon} name="ios-search" size={20} color="#000"/> */}
 
-      <TextInput
-        style={styles.input}
-        placeholder={placeholder}
-        // onChangeText={(searchString) => {
-        //   this.setState({searchString});
-        // }}
-        underlineColorAndroid="transparent"
-      />
+      <View style={styles.input} underlineColorAndroid="transparent">
+        <Text style={color && {color: color}}>{placeholder}</Text>
+      </View>
       {icon === 'search' && (
         <Image source={images.search} style={styles.searchIcon} />
       )}
 
       {icon === 'close' && <Image source={images.close} style={styles.close} />}
       {icon === 'down' && <Image source={images.down} style={styles.down} />}
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -52,4 +50,4 @@ const SearchData = (props: any) => {
     </View> */
 }
 
-export default SearchData;
+export default CustomButton;

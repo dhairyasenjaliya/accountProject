@@ -10,12 +10,21 @@ import {
   StyleSheet,
   ScrollView,
   Image,
+  ImageBackground,
+  Select,
 } from 'react-native';
 import styles from './styles';
 // import DropdownMenu from 'react-native-dropdown-menu';
 import images from '../../assets/';
 import SearchData from '../../component/customTextBox';
+import CustomButton from '../../component/customButton';
+
 import {Switch} from 'react-native-switch';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import DropDownPicker from 'react-native-dropdown-picker';
+import RNPickerSelect from 'react-native-picker-select';
+import {scale} from '../../utils/scale';
+
 interface IProps {
   appTheme: Object;
 }
@@ -76,17 +85,45 @@ const singleData = [
   },
 ];
 
-const date = '29/12/2018';
+const date2 = '29/12/2018';
 const time = '02:00pm';
 class HomeScreen extends React.Component<IProps, IState> {
   state: {};
   constructor(props: any) {
     super(props);
-    this.state = {data: [], isLoading: true, selectedVal: true};
+    this.state = {
+      data: [],
+      isLoading: true,
+      selectedVal: true,
+      date: new Date('2020-06-12T14:42:42'),
+      mode: 'date',
+      show: false,
+      showCompany: false,
+    };
   }
 
   componentDidMount() {}
   // Name of project, Name of company,   and techstack.
+
+  setDate = (event, date) => {
+    date = date || this.state.date;
+
+    this.setState({
+      show: Platform.OS === 'ios' ? true : false,
+      date,
+    });
+  };
+
+  show = (mode) => {
+    this.setState({
+      show: true,
+      mode,
+    });
+  };
+
+  datepicker = () => {
+    this.show('date');
+  };
 
   detailList = (data) => {
     const {name, desc, date, logo, time} = data.item;
@@ -118,14 +155,70 @@ class HomeScreen extends React.Component<IProps, IState> {
 
   render() {
     // var data = [['Company', 'Helll0', 'check']];
+    const {show, date, mode, showCompany} = this.state;
     const {navigation} = this.props;
     return (
       <SafeAreaView style={styles.container}>
-        {/* <Image style={styles.header} source={images.header1} /> */}
         <ScrollView>
           <View style={styles.searchContain}>
+            {/* <Image source={images.background} /> */}
+            <ImageBackground
+              source={images.background}
+              style={{
+                flex: 1,
+                resizeMode: 'cover',
+                justifyContent: 'center',
+                paddingTop: 20,
+              }}>
+              <CustomButton
+                placeholder="Company"
+                icon={'down'}
+                backGroundColor={'#35e7bd'}
+                color={'#FFF'}
+                onPress={() => {
+                  this.setState({showCompany: !showCompany});
+                }}
+              />
+
+              {showCompany && (
+                <View
+                  style={{
+                    marginHorizontal: scale(20),
+                  }}>
+                  <Text style={{textAlign: 'center', marginVertical: 20}}>
+                    Company 1
+                  </Text>
+                  <Text style={{textAlign: 'center', marginVertical: 20}}>
+                    Company 2
+                  </Text>
+                  <Text style={{textAlign: 'center', marginVertical: 20}}>
+                    Company 3
+                  </Text>
+                </View>
+              )}
+              <CustomButton
+                placeholder="Select User Clients List"
+                icon={'down'}
+                backGroundColor={'#FFF'}
+              />
+              <View style={{flexDirection: 'row', paddingBottom: 20}}>
+                <CustomButton
+                  placeholder="Status"
+                  icon={'down'}
+                  backGroundColor={'#FFF'}
+                  // backGroundColor={'#35e7bd'}
+                />
+                <CustomButton
+                  placeholder="Product"
+                  icon={'down'}
+                  backGroundColor={'#FFF'}
+                />
+              </View>
+            </ImageBackground>
             <View style={styles.listCategory}>
-              <Text style={styles.categoryTextAll}>All</Text>
+              <TouchableOpacity onPress={() => navigation.navigate('Details')}>
+                <Text style={styles.categoryTextAll}>All</Text>
+              </TouchableOpacity>
               <Text style={styles.categoryText}>Prospects</Text>
               <Text style={styles.categoryText}>Clients</Text>
               <Text style={styles.categoryTextLeads}>Leads</Text>
@@ -201,15 +294,31 @@ class HomeScreen extends React.Component<IProps, IState> {
           </View>
           <View style={styles.leftContain}>
             <View style={styles.dataTimeContain}>
-              <Text style={styles.categoryTextTimeColor}>{date}</Text>
+              <Text style={styles.categoryTextTimeColor}>{date2}</Text>
               <Text>{time}</Text>
             </View>
             <View style={styles.dataTimeContainFlex}>
               <Image style={styles.threeIcon2} source={images.potentail} />
-              <Image style={styles.threeIcon} source={images.calender} />
+              <TouchableOpacity
+                onPress={() =>
+                  this.datepicker && this.setState({show: !this.state.show})
+                }>
+                <Image style={styles.threeIcon} source={images.calender} />
+              </TouchableOpacity>
               <Image style={styles.threeIcon} source={images.callBack} />
               <Image style={styles.threeIcon} source={images.dollar} />
             </View>
+          </View>
+          <View>
+            {show && (
+              <DateTimePicker
+                value={date}
+                mode={mode}
+                is24Hour={true}
+                display="default"
+                onChange={this.setDate}
+              />
+            )}
           </View>
           <View>
             <FlatList
@@ -231,17 +340,4 @@ class HomeScreen extends React.Component<IProps, IState> {
     );
   }
 }
-
-{
-  /* <TouchableOpacity
-style={styles.flatlistStyle}
-onPress={() =>
-  navigation.navigate('Details', {
-    allData: data.item,
-  })
-}> 
-<Text>hy</Text>
-</TouchableOpacity> */
-}
-
 export default HomeScreen;
