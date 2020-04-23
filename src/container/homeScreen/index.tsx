@@ -14,6 +14,7 @@ import {
 import styles from './styles';
 // import DropdownMenu from 'react-native-dropdown-menu';
 import images from '../../assets/';
+import SearchData from '../../component/customTextBox';
 
 interface IProps {
   appTheme: Object;
@@ -74,6 +75,9 @@ const singleData = [
     logo: '22222222',
   },
 ];
+
+const date = '29/12/2018';
+const time = '02:00pm';
 class HomeScreen extends React.Component<IProps, IState> {
   state: {};
   constructor(props: any) {
@@ -102,30 +106,85 @@ class HomeScreen extends React.Component<IProps, IState> {
   };
 
   render() {
-    var data = [['Company', 'Helll0', 'check']];
+    // var data = [['Company', 'Helll0', 'check']];
     const {navigation} = this.props;
     return (
       <SafeAreaView style={styles.container}>
+        {/* <Image style={styles.header} source={images.header1} /> */}
         <ScrollView>
-          <View style={styles.listCategory}>
-            <Text style={styles.categoryText}>All</Text>
-            <Text style={styles.categoryText}>Prospects</Text>
-            <Text style={styles.categoryText}>Clients</Text>
-            <Text style={styles.categoryText}>Leads</Text>
+          <View style={styles.searchContain}>
+            <View style={styles.listCategory}>
+              <Text style={styles.categoryTextAll}>All</Text>
+              <Text style={styles.categoryText}>Prospects</Text>
+              <Text style={styles.categoryText}>Clients</Text>
+              <Text style={styles.categoryTextLeads}>Leads</Text>
+            </View>
+            <SearchData placeholder="Search" icon={'search'} />
+            <View style={styles.searchFlex}>
+              <Text style={styles.leadText}>Lead Group:</Text>
+              <View style={{height: '80%', flex: 1}}>
+                <SearchData
+                  placeholder="(Old) Maid Agency (Less Than ..."
+                  icon={'search'}
+                />
+              </View>
+            </View>
+            <View style={styles.typeText}>
+              <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+                <Image style={styles.doneIcon} source={images.done} />
+                <Text style={{marginHorizontal: 5, marginVertical: 2}}>
+                  Prospects
+                </Text>
+              </View>
+
+              <Image style={styles.doneIcon} source={images.done} />
+              <Text>Client</Text>
+              <Image style={styles.doneIcon} source={images.done} />
+
+              <Text>Leads</Text>
+            </View>
+            <View style={styles.typeText2}>
+              <Text>Name</Text>
+              <Text>Company</Text>
+              <Text>Contacts</Text>
+              <Text>Date & Time</Text>
+            </View>
           </View>
+
           <View>
             <FlatList
               data={singleData}
               renderItem={(data) => this.detailList(data)}
             />
           </View>
+          <View style={styles.leftContain}>
+            <View style={styles.dataTimeContain}>
+              <Text style={styles.categoryTextTimeColor}>{date}</Text>
+              <Text>{time}</Text>
+            </View>
+            <View style={styles.dataTimeContainFlex}>
+              <Image style={styles.threeIcon2} source={images.potentail} />
+              <Image style={styles.threeIcon} source={images.calender} />
+              <Image style={styles.threeIcon} source={images.callBack} />
+              <Image style={styles.threeIcon} source={images.dollar} />
+            </View>
+          </View>
           <View>
             <FlatList
               data={multiData}
               renderItem={(data) => this.detailList(data)}
+              contentContainerStyle={{paddingBottom: 90}}
             />
           </View>
         </ScrollView>
+        <TouchableOpacity
+          activeOpacity={1}
+          // style={{flex: 1}}
+          // hitslop={{top: 10, bottom: 20, left: 20, right: 20}}
+          onPress={() => navigation.navigate('Details')}>
+          <Image style={styles.tabBar} source={images.tab1} />
+          {/*  <Image style={styles.tabBar} source={images.tab2} /> */}
+        </TouchableOpacity>
       </SafeAreaView>
     );
   }

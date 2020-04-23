@@ -8,4 +8,12 @@ export default {
   dollar: require(`${HomeScreen}dollar.png`),
   message: require(`${HomeScreen}message.png`),
   potentail: require(`${HomeScreen}potentail.png`),
+  // potentail: require(`${HomeScreen}potentail.png`),
+  tab2: require(`${HomeScreen}tab2.png`),
+  tab1: require(`${HomeScreen}tab1.png`),
+  search: require(`${HomeScreen}search.png`),
+  close: require(`${HomeScreen}close.png`),
+  header: require(`${HomeScreen}header.png`),
+  header1: require(`${HomeScreen}header1.png`),
+  done: require(`${HomeScreen}done.png`),
 };

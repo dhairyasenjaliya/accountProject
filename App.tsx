@@ -14,7 +14,7 @@ class App extends React.Component {
   render() {
     return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Details">
+        <Stack.Navigator initialRouteName="Project">
           <Stack.Screen
             options={{
               headerShown: false,
@@ -22,7 +22,13 @@ class App extends React.Component {
             name="Project"
             component={HomeScreen}
           />
-          <Stack.Screen name="Details" component={DetailScreen} />
+          <Stack.Screen
+            options={{
+              headerShown: false,
+            }}
+            name="Details"
+            component={DetailScreen}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     );
