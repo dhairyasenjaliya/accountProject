@@ -12,6 +12,7 @@ import {
   Image,
   ImageBackground,
   Select,
+  Platform,
 } from 'react-native';
 import styles from './styles';
 // import DropdownMenu from 'react-native-dropdown-menu';
@@ -158,7 +159,7 @@ class HomeScreen extends React.Component<IProps, IState> {
     const {show, date, mode, showCompany} = this.state;
     const {navigation} = this.props;
     return (
-      <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
         <ScrollView>
           <View style={styles.searchContain}>
             {/* <Image source={images.background} /> */}
@@ -170,30 +171,37 @@ class HomeScreen extends React.Component<IProps, IState> {
                 justifyContent: 'center',
                 paddingTop: 20,
               }}>
-              <CustomButton
-                placeholder="Company"
-                icon={'down'}
-                backGroundColor={'#35e7bd'}
-                color={'#FFF'}
-                onPress={() => {
-                  this.setState({showCompany: !showCompany});
-                }}
-              />
+              <View style={{marginTop: 25}}>
+                <CustomButton
+                  placeholder="Company"
+                  icon={'down'}
+                  backGroundColor={'#35e7bd'}
+                  color={'#FFF'}
+                  onPress={() => {
+                    this.setState({showCompany: !showCompany});
+                  }}
+                />
+              </View>
 
               {showCompany && (
-                <View
-                  style={{
-                    marginHorizontal: scale(20),
-                  }}>
-                  <Text style={{textAlign: 'center', marginVertical: 20}}>
-                    Company 1
-                  </Text>
-                  <Text style={{textAlign: 'center', marginVertical: 20}}>
-                    Company 2
-                  </Text>
-                  <Text style={{textAlign: 'center', marginVertical: 20}}>
-                    Company 3
-                  </Text>
+                <View>
+                  <View style={styles.viewCustom}>
+                    <Text style={{textAlign: 'center', marginVertical: 20}}>
+                      Company 1
+                    </Text>
+                  </View>
+
+                  <View style={styles.viewCustom2}>
+                    <Text style={{textAlign: 'center', marginVertical: 20}}>
+                      Company 2
+                    </Text>
+                  </View>
+
+                  <View style={styles.viewCustom2}>
+                    <Text style={{textAlign: 'center', marginVertical: 20}}>
+                      Company 3
+                    </Text>
+                  </View>
                 </View>
               )}
               <CustomButton
@@ -234,7 +242,7 @@ class HomeScreen extends React.Component<IProps, IState> {
               </View>
             </View>
 
-            <View style={{marginHorizontal: 15, marginBottom: 20}}>
+            <View style={{marginHorizontal: 15, marginBottom: 30}}>
               <Switch
                 value={this.state.selectedVal}
                 onValueChange={(value) => this.setState({selectedVal: value})}
@@ -245,21 +253,24 @@ class HomeScreen extends React.Component<IProps, IState> {
                 backgroundActive="#76ccf3"
                 backgroundInactive="#76ccf3"
                 circleActiveColor="#FFF"
-                // circleInActiveColor="#FFF"
                 changeValueImmediately={true}
                 renderInsideCircle={() => this.customThemeIcon()}
                 innerCircleStyle={{
                   alignItems: 'center',
                   justifyContent: 'center',
                   height: 40,
-                  width: 180,
+                  width: 170,
+                  marginLeft: scale(Platform === 'ios' ? 80 : 60),
                 }}
                 outerCircleStyle={{}} // style for outer animated circle
+                renderActiveText={true}
+                renderInActiveText={true}
                 // activeText={'Lead List'}
-
-                // inActiveText={'Follow-Ups'}
-                // renderActiveText={true}
-                // renderInActiveText={true}
+                // activeTextStyle={{marginLeft: scale(20)}}
+                inActiveText={'                   Follow-Ups'}
+                // inActiveTextStyle={{marginRight: scale(-50)}}
+                // switchLeftPx={5} // denominator for logic when sliding to TRUE position. Higher number = more space from RIGHT of the circle to END of the slider
+                // switchRightPx={5}
               />
             </View>
 
@@ -336,7 +347,7 @@ class HomeScreen extends React.Component<IProps, IState> {
           <Image style={styles.tabBar} source={images.tab1} />
           {/*  <Image style={styles.tabBar} source={images.tab2} /> */}
         </TouchableOpacity>
-      </SafeAreaView>
+      </View>
     );
   }
 }

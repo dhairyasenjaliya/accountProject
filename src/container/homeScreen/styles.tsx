@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     fontSize: scale(14),
   },
   categoryText: {
-    padding: scale(15),
+    // padding: scale(10),
     width: scale(90),
     borderRadius: scale(22),
     overflow: 'hidden',
@@ -30,6 +30,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     backgroundColor: '#76ccf3',
     color: '#FFF',
+    justifyContent: 'center',
+    paddingVertical: scale(15),
   },
   categoryTextLeads: {
     padding: scale(15),
@@ -136,6 +138,28 @@ const styles = StyleSheet.create({
   },
   doneContainer: {flexDirection: 'row', justifyContent: 'center'},
   doneText: {marginHorizontal: scale(5), marginVertical: scale(2)},
+  viewCustom: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f4f5f5',
+    marginHorizontal: scale(20),
+    borderRadius: scale(100),
+    // paddingVertical: scale(Platform.OS === 'ios' ? 0 : 0),
+    marginVertical: scale(10),
+  },
+  viewCustom2: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'grey',
+    marginHorizontal: scale(20),
+    borderRadius: scale(100),
+    // paddingVertical: scale(Platform.OS === 'ios' ? 0 : 0),
+    marginVertical: scale(10),
+  },
 });
 
 export default styles;
